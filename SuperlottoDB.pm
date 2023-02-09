@@ -1,6 +1,6 @@
 package SuperlottoDB;
 
-# @(#) NMG/2WM - $Id: SuperlottoDB.pm,v 1.4 2023/01/24 19:50:15 user Exp $
+# @(#) NMG/2WM - $Id: SuperlottoDB.pm,v 1.1.1.1 2023/02/09 23:49:35 user Exp $
 
 use strict;
 use warnings;

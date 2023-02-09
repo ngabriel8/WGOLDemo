@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-# @(#) NMG/2WM - $Id:$
+# @(#) NMG/2WM - $Id: wgol_driver.pl,v 1.1.1.1 2023/02/09 23:49:35 user Exp $
 use strict;
 use warnings;
 use File::Basename qw(basename);
@@ -12,8 +12,6 @@ use Superlotto;
 # in the OPTS_CONFIG hash use $obj for func. The Wrapper constructor uses obj internally to the object
 # passed to it. Command line options are saved in %opts (private). 
 # But can be used in CONFIG hash as argument to a function, an example is the get_draw option, please see below.
-
-our $sl=new Superlotto;
 
 ($^O eq 'MSWin32') && ($ENV{'HOME'}='C:/cygwin64/home/user');
 
@@ -65,6 +63,7 @@ my %OPTS_CONFIG=(
    },
 );
 
+our $sl=new Superlotto;
 my $wgol=new Wrapper::GetoptLong(\%OPTS_CONFIG, $sl);
 $wgol->run_getopt();
 my $rc=$wgol->execute_opt();

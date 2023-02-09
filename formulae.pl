@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-# @(#) NMG/2WM - $Id: formulae.pl,v 1.1.1.1 2023/01/15 05:45:10 user Exp $
+# @(#) NMG/2WM - $Id: formulae.pl,v 1.1.1.1 2023/02/09 23:49:35 user Exp $
 use strict;
 use warnings;
 
