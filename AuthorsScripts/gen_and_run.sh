@@ -1,45 +1,48 @@
 #!/usr/bin/bash
 
-# @(#) NMG/2WM - $Id: gen_and_run.sh,v 1.2 2023/02/10 22:39:34 user Exp $
+# @(#) NMG/2WM - $Id: gen_and_run.sh,v 1.4 2023/02/10 23:31:59 user Exp $
 
-
-### in case we want to cd back...
+### in case we want to cd back
 CWD=`pwd`
 
 # we are in AuthorsScripts dir, we need to go to the main dir one step up
 
 cd ..
 
-IFL=README.md
-OFL=README.htm
+MD_FL=README.md
+HTML_FL=README.htm
+TXT_FL=README
+TXT_FL_BAK=README.bak
 TMP_PL=tmp.pl
 ERR_FL=/tmp/gen_and_run.err
 FF='/cygdrive/c/Progra~1/Mozill~1/firefox.exe'
 
-if [ ! -f $IFL ]
+if [ ! -f $MD_FL ]
 then
-  echo "Cannot find $IFL to generate $OFL from it. Exiting..."
+  echo "Cannot find $MD_FL to generate $HTML_FL from it. Exiting..."
   exit 1
 fi
+
+[ -f $TXT_FL -a  ! -f $TXT_FL_BAK ] && cp $TXT_FL $TXT_FL_BAK
 
 # HERE should point to : /cygdrive/c/users/user/Documents/GitHub/WGOLDemo
 HERE=$(cygpath -w `pwd`)
 
 
-[ -f $OFL ] && rm -f $OFL
+[ -f $HTML_FL ] && rm -f $HTML_FL
 
-htmldoc $IFL >$OFL 2>$ERR_FL
+htmldoc $MD_FL >$HTML_FL 2>$ERR_FL
 
 # check if err file size is 0 then edit file and display in default browser
 
-if [ ! -s $ERR_FL  -a  -f $OFL ]
+if [ ! -s $ERR_FL  -a  -f $HTML_FL ]
 then
-  ex - $OFL <<EOF
+  ex - $HTML_FL <<EOF
 %s/<!DOCTYPE/<!doctype/
 /<BODY>/
 :+1
 i
-<!-- auto-generated from $IFL using htmldoc -->
+<!-- auto-generated from $MD_FL using htmldoc -->
 .
 :wq
 EOF
@@ -50,7 +53,7 @@ EOF
 use strict;
 use warnings;
 
-open(LOG, '<', "$OFL") || die "Cannot open $OFL for reading. Exiting...";
+open(LOG, '<', "$HTML_FL") || die "Cannot open $HTML_FL for reading. Exiting...";
 my @a=<LOG>;
 close(LOG);
 shift(@a);
@@ -60,14 +63,13 @@ foreach (@a)
   s%</(\w+)%"</".lc(\$1)%ge;
   }
 push(@a, '</body>', "\n", '</html>', "\n");
-open(LOG, '>', "$OFL") || die "Cannot open $OFL for writing. Exiting...";
-print LOG @a;
-close(LOG);
+open(HTML_FL, '>', "$HTML_FL") || die "Cannot open $HTML_FL for writing. Exiting...";
+print HTML_FL @a;
+close(HTML_FL);
 EOF
 
   $(perl $TMP_PL);
-
-  $FF file://$HERE/$OFL &
+  $FF file://$HERE/$HTML_FL &
   rm -f $ERR_FL $TMP_PL
 else
   cat $ERR_FL
