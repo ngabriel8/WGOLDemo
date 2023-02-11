@@ -1,7 +1,8 @@
-<html>
-<head>
-<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=iso-8859-1">
-<style TYPE="text/css"><!--
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=iso-8859-1">
+<STYLE TYPE="text/css"><!--
 BODY { font-family: serif; }
 H1 { font-family: sans-serif; }
 H2 { font-family: sans-serif; }
@@ -12,13 +13,12 @@ H6 { font-family: sans-serif; }
 SUB { font-size: smaller; }
 SUP { font-size: smaller; }
 PRE { font-family: monospace; margin-left: 36pt; }
---></style>
-</head>
-<body>
-<!-- auto-generated from README.md using htmldoc -->
-<center><a HREF="#CONTENTS"></a>
-</center>
-<hr NOSHADE>
+--></STYLE>
+</HEAD>
+<BODY>
+<CENTER><A HREF="#CONTENTS"></A>
+</CENTER>
+<HR NOSHADE>
 <h1 ALIGN="CENTER"><a NAME="CONTENTS">Table of Contents</a></h1>
 <br>
 <br><b><a HREF="#wgoldemo">WGOLDemo</a></b>
@@ -41,7 +41,7 @@ PRE { font-family: monospace; margin-left: 36pt; }
 </ul>
 </li>
 </ul>
-<hr NOSHADE>
+<HR NOSHADE>
 <h1><a id="wgoldemo">WGOLDemo</a></h1>
 <ul>
 <li>
@@ -76,7 +76,44 @@ PRE { font-family: monospace; margin-left: 36pt; }
 <p>Mercury (mail server)</p>
 </li>
 <li>
-<p>And Tomcat (aka Catalina) - for serving Java/JSP on Apache (the Web).</p>
+<p>Tomcat (aka Catalina) - for serving Java/JSP on Apache (the Web).</p>
+</li>
+<li>
+<p>As well as perl and php.</p>
+</li>
+<li>
+<p>As and added bonus, phpMyAdmin is included to manage the dabase from
+ a browser</p>
+</li>
+<li>
+<p>For non-Windows platform, put '#!/usr/bin/perl' or '#!env perl' as
+ the first line</p>
+</li>
+<li>
+<p>of your script if you want to use the system Perl. For Windows using
+ Strawberry Perl</p>
+</li>
+<li>
+<p>is recommended strongly, because installing modules is much easier -
+ since it has its own compilers and make, and cpanm.bat works:</p>
+</li>
+<li>
+<p>#!C:/Strawberry/perl/bin/perl</p>
+</li>
+<li>
+<p>assuming Strawberry is install in the root directory of Windows.</p>
+</li>
+<li>
+<p>Please note, you can also use the following form , for
+ multi-platforms, works on Cygwin, Windows and Linux (Mint):</p>
+</li>
+<li>
+<p>#!perl eval 'exec perl -wS $0 ${1+&quot;$@&quot;}' if
+ $running_under_some_shell;</p>
+</li>
+<li>
+<p>Assumes there is at least one Perl excutable to be found in the
+ PATH/path variable.</p>
 </li>
 </ul>
 <h2><a id="assumptions">Assumptions:</a></h2>
@@ -230,5 +267,3 @@ print_usage_and_die</strong></p>
 <p>In the driver script: wgol_driver.pl</p>
 </li>
 </ul>
-</body>
-</html>

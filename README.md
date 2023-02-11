@@ -13,8 +13,19 @@
 *  MariaDB (a database server/client)
 *  FileZilla (a file server)
 *  Mercury (mail server)
-*  And Tomcat (aka Catalina) - for serving Java/JSP on Apache (the Web).
-
+*  Tomcat (aka Catalina) - for serving Java/JSP on Apache (the Web).
+*  As well as perl and php.
+*  As and added bonus, phpMyAdmin is included to manage the dabase from a browser
+*  For non-Windows platform, put '#!/usr/bin/perl' or '#!env perl' as the first line
+*   of your script if you want to use the system Perl. For Windows using Strawberry Perl
+*   is recommended strongly, because installing modules is much easier - since it has its own compilers and make, and cpanm.bat works:
+*   #!C:/Strawberry/perl/bin/perl
+*   assuming Strawberry is install in the root directory of Windows.
+*  Please note, you can also use the following form , for multi-platforms, works on Cygwin, Windows and Linux (Mint):
+*  #!perl
+      eval 'exec perl -wS $0 ${1+"$@"}'
+               if $running_under_some_shell;
+*  Assumes there is at least one Perl excutable to be found in the PATH/path variable.
 
 ## Assumptions:
 * You have perl installed
