@@ -51,7 +51,7 @@ pre { font-family: monospace; margin-left: 36pt; }
 <p>A demo app (SuperLotto) for the Wrapper::GetoptLong Perl module.</p>
 </li>
 <li>
-<p>Requires a database, mySQL or MariaDB.</p>
+<p>Requires a database, MySQL or MariaDB.</p>
 </li>
 <li>
 <p>A file supplied in the repository under the SQL sub-directory, will
@@ -85,8 +85,8 @@ pre { font-family: monospace; margin-left: 36pt; }
 <p>As well as perl and php.</p>
 </li>
 <li>
-<p>As and added bonus, phpMyAdmin is included to manage the dabase from
- a browser</p>
+<p>As and added bonus, phpMyAdmin is included to manage the database
+ from a browser</p>
 </li>
 <li>
 <p>For non-Windows platform, put '#!/usr/bin/perl' or '#!env perl' as
@@ -141,14 +141,21 @@ pre { font-family: monospace; margin-left: 36pt; }
 <p>Requires make utility</p>
 </li>
 <li>
-<p>If you have cpanm installed, it is simple:</p>
-</li>
-<li>
-<p><code>cpanm Wrapper::GetoptLong</code></p>
+<p>If you have cpanm installed, it is simple: <code>
+cpanm Wrapper::GetoptLong</code></p>
 </li>
 <li>
 <p>Any errors will be in build.log
  ($HOME/.cpanm/work/(tmp-build-dir-name)/build.log</p>
+</li>
+<li>
+<p>The beautiful thing about cpanm - it will take care of all the
+ dependencies.</p>
+</li>
+<li>
+<p>For example, Dist::Zilla has 39 dependencies - without cpanm, you
+ have to download, build, test and install each one manually, first,
+ finding where the link for each module is on CPAN.</p>
 </li>
 <li>
 <p>To uninstall:</p>
@@ -261,7 +268,7 @@ print_usage_and_die</strong></p>
  option,</a></h4>
 <ul>
 <li>
-<p>The module will call the function associated with the option</p>
+<p>The module will call the function (method) associated with the option</p>
 </li>
 <li>
 <p>from the config hash (associative array)</p>
