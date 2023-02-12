@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-# @(#) NMG/2WM - $Id: gen_and_run.sh,v 1.4 2023/02/10 23:31:59 user Exp $
+# @(#) NMG/2WM - $Id: gen_and_run.sh,v 1.6 2023/02/12 04:55:21 user Exp $
 
 ### in case we want to cd back
 CWD=`pwd`
@@ -11,8 +11,6 @@ cd ..
 
 MD_FL=README.md
 HTML_FL=README.htm
-TXT_FL=README
-TXT_FL_BAK=README.bak
 TMP_PL=tmp.pl
 ERR_FL=/tmp/gen_and_run.err
 FF='/cygdrive/c/Progra~1/Mozill~1/firefox.exe'
@@ -23,7 +21,6 @@ then
   exit 1
 fi
 
-[ -f $TXT_FL -a  ! -f $TXT_FL_BAK ] && cp $TXT_FL $TXT_FL_BAK
 
 # HERE should point to : /cygdrive/c/users/user/Documents/GitHub/WGOLDemo
 HERE=$(cygpath -w `pwd`)
@@ -61,6 +58,10 @@ foreach (@a)
   {
   s%<(\w+)%"<".lc(\$1)%ge;
   s%</(\w+)%"</".lc(\$1)%ge;
+  s%^(\w+)%lc(\$1)%ge;
+  s%(ALIGN|NAME|HREF)=%lc(\$1)."="%ge;
+  s%(CONTENTS|CENTER|NOSHADE)%lc(\$1)%ge;
+  s%(CONTENT|CHARSET|HTTP\-EQUIV)=%lc(\$1)."="%ge;
   }
 push(@a, '</body>', "\n", '</html>', "\n");
 open(HTML_FL, '>', "$HTML_FL") || die "Cannot open $HTML_FL for writing. Exiting...";
@@ -69,7 +70,7 @@ close(HTML_FL);
 EOF
 
   $(perl $TMP_PL);
-  $FF file://$HERE/$HTML_FL &
+  [ $# -eq 0 ] && $FF file://$HERE/$HTML_FL &
   rm -f $ERR_FL $TMP_PL
 else
   cat $ERR_FL

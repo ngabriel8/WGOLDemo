@@ -1,0 +1,155 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style TYPE="text/css"><!--
+body { font-family: serif; }
+h1 { font-family: sans-serif; }
+h2 { font-family: sans-serif; }
+h3 { font-family: sans-serif; }
+h4 { font-family: sans-serif; }
+h5 { font-family: sans-serif; }
+h6 { font-family: sans-serif; }
+sub { font-size: smaller; }
+sup { font-size: smaller; }
+pre { font-family: monospace; margin-left: 36pt; }
+--></style>
+</head>
+
+<body>
+<!-- auto-generated from README.md using htmldoc -->
+<center><a href="#contents"></a>
+</center>
+<hr noshade>
+<h1 align="center"><a name="contents">Table of Contents</a></h1>
+<br>
+<br><b><a href="#a-demo-for-a-perl-module">A Demo for A Perl Module</a></b>
+<ul>
+<li><a href="#wgoldemo">WGOLDemo</a>
+<li><a href="#helpful-hints">Helpful hints:</a>
+<li><a href="#assumptions">Assumptions:</a>
+<ul>
+<li><a href="#wgol-hint">WGOL hint:</a>
+</ul>
+<li><a href="#how-to-installrun">How to Install/run:</a>
+<ul>
+<li><a href="#install">Install</a>
+<li><a href="#db-section">DB section</a>
+</ul>
+<li><a href="#running-the-driver-script">Running the driver (script)</a>
+<ul>
+<li><a href="#step-1-is-a-success">Step 1 is a Success!</a>
+</ul>
+</ul>
+<hr noshade>
+<h1><a id="a-demo-for-a-perl-module"><center><strong>A Demo for A Perl Module<a href="#which">Which</a></strong></center>
+</a></h1>
+<h2><a id="wgoldemo">WGOLDemo</a></h2>
+<p>A demo app (SuperLotto) for the Wrapper::GetoptLong Perl module.</p>
+<p>Requires a database, mySQL or MariaDB.</p>
+<p>A file supplied in the repository under the SQL sub-directory, will
+ create and populate the database.</p>
+<p>(SQL - Structured Query Language)</p>
+</ul>
+<h2><a id="helpful-hints">Helpful hints:</a></h2>
+<ul>
+<p>XAMPP is available for most platforms. A bundle that includes:</p>
+<p>Apache (web server)</p>
+<p>MariaDB (a database server/client)</p>
+<p>FileZilla (a file server)</p>
+<p>Mercury (mail server)</p>
+<p>Tomcat (aka Catalina) - for serving Java/JSP on Apache (the Web).</p>
+<p>As well as perl and php.</p>
+<p>As and added bonus, phpMyAdmin is included to manage the database from a browser</p>
+<pre>For non-Windows platforms, put
+<code>#!/usr/bin/perl</code>
+or
+<code>#!env perl</code>
+as the first line of your script if you want to use the system Perl.
+For Windows, using Strawberry Perl is recommended strongly, because installing modules is much easier -
+ since it has its own compilers and make, and cpanm.bat works:
+<code>#!C:/Strawberry/perl/bin/perl</code>
+assuming Strawberry is installed in the root directory of Windows.
+</pre>
+<p>Please note, you can also use the following form , for multi-platforms, works on Cygwin, Windows and Linux (Mint):</p>
+<pre><code>#!perl eval 'exec perl -wS $0 ${1+&quot;$@&quot;}' if
+ $running_under_some_shell;<code></pre>
+<p>Assumes there is at least one Perl excutable to be found in the
+ PATH/path variable.</p>
+<h2><a id="assumptions">Assumptions:</a></h2>
+<ul>
+<li>You have perl installed</li>
+<li>The Wrapper::GetoptLong module installed, please see WGOL hint below.</li>
+<li>You have MySQL / MariaDB server and client installed, already.</li>
+<li>Everything is in the WGOLDemo folder/directory, and we are working from there.</li>
+</ul>
+<h3><a id="wgol-hint">WGOL hint:</a></h3>
+<ul>
+<li>Requires make utility</li>
+<li><pre>
+If you have cpanm installed, it is simple:
+<code>cpanm Wrapper::GetoptLong</code>
+Any errors will be in build.log
+ ($HOME/.cpanm/work/(tmp-build-dir-name)/build.log
+</pre></li>
+<li>To uninstall:</li>
+<li><pre><code>cpanm -U Wrapper::GetoptLong</code></pre></li>
+<li>Otherwise, download the tar.gz file from CPAN</li>
+<li>
+</ul>
+<pre><code>
+tar xzf Wrapper-GetoptLong-0.01.tar.gz
+cd Wrapper-GetoptLong-0.01
+perl Makefile.PL
+# this will genearate a Makefile</p>
+make &amp;&amp; make test &amp;&amp; make install
+</code></pre>
+
+<h2><a id="how-to-installrun">How to Install/run:</a></h2>
+<p>Please, note : the SuperLottoDB.pm has the DB server name/IP, user
+ and password hardcoded, you might have to change some of those:</p>
+<ul>
+<li>DB Server: 127.0.0.1 (or you can use localhost if not running on Windows - using Strawberry Perl).</li>
+<li>DB User: root</li>
+<li>DB Password: '' (or NULL/undef - not set)</li>
+</ul>
+<h3><a id="install">Install</a></h3>
+<p>By using the GitHub web link, from a browser,</p>
+<p><a href="https://github.com/ngabriel8/WGOLDemo">Link to GitHub</a></p>
+<p>Or the command line git utility - On the command line(in a terminal, or Command Prompt - on Windows)</p>
+<code>git clone <a href="https://github.com/ngabriel8/WGOLDemo.git">https://github.com/ngabriel8/WGOLDemo.git</a></code>
+<h3><a id="db-section">DB section</a></h3>
+<pre><code>
+cd SQL
+gzip -d superlotto_db.sql.gz
+mysql &lt; superlotto_db.sql
+# Or if you have db_user and password, set:
+mysql -u db_user -p
+# (will prompt for password)
+# Once you're in the mysql prompt:
+source suplerlotto_db.sql
+quit
+</code></pre>
+<h2><a id="running-the-driver-script">Running the driver (script)</a></h2>
+<p>The driver script is wgol_driver.pl</p>
+<p>If on Mac and *nix systems : make sure the exec bit is on :</p>
+<pre><code>chmod 0755 wgol_drive.pl</code></pre>
+<p>Or if you want to be mean, 0555 - just to be sure nobody messes with the code.</p>
+<p>The shbang line (#! - the first line) is set to /usr/bin/perl - You
+ might have to change that to run it as : <code>./wgol_drive.pl</code></p>
+<p>Or (this should work on all systems) <code>perl  wgol_driver.pl</code>
+</p>
+<p>In either case, this will show the help message with available
+ options - same as running it as: <code>perl wgol_driver.pl  --help</code>
+</p>
+</ul>
+<h3><a id="step-1-is-a-success">Step 1 is a Success!</a></h3>
+<p>The help option, the usage message it displays and the function <strong>
+print_usage_and_die</strong></p>
+<p>are all freebies, auto generated by the module.</p>
+<h4><a id="step-2-is-when-run-with-an-option">Step 2 is when run with an option,</a></h4>
+<p>The module will call the function associated with the option</p>
+<p>from the config hash (associative array)</p>
+<p>defined in the driver script: wgol_driver.pl</p>
+<h3><a id="which" href="http://www.cpan.org/modules/by-authors/id/N/NG/NGABRIEL/Wrapper-GetoptLong-0.01.tar.gz">Wrapper::GetoptLong</a></h3>
+</body>
+</html>

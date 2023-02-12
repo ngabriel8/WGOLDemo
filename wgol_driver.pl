@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-# @(#) NMG/2WM - $Id: wgol_driver.pl,v 1.1.1.1 2023/02/09 23:49:35 user Exp $
+# @(#) NMG/2WM - $Id: wgol_driver.pl,v 1.2 2023/02/12 04:24:42 user Exp $
 use strict;
 use warnings;
 use File::Basename qw(basename);
@@ -9,7 +9,7 @@ use Wrapper::GetoptLong;
 use lib ('.');
 use Superlotto;
 
-# in the OPTS_CONFIG hash use $obj for func. The Wrapper constructor uses obj internally to the object
+# In the OPTS_CONFIG hash use $obj for func. The Wrapper constructor uses obj internally to the object
 # passed to it. Command line options are saved in %opts (private). 
 # But can be used in CONFIG hash as argument to a function, an example is the get_draw option, please see below.
 
