@@ -24,15 +24,8 @@ pre { font-family: monospace; margin-left: 36pt; }
 <br><b><a href="#a-demo-for-a-perl-module">A Demo for A Perl Module</a></b>
 <ul>
 <li><a href="#wgoldemo">WGOLDemo</a></li>
-<li><a href="#helpful-hints">Helpful hints:</a></li>
-<li><a href="#assumptions">Assumptions:</a>
+<li><a href="#helpful-hints">Helpful hints:</a>
 <ul>
-<li><a href="#wgol-hint">WGOL hint:</a></li>
-</ul>
-</li>
-<li><a href="#how-to-installrun">How to Install/run:</a>
-<ul>
-<li><a href="#install">Install</a></li>
 <li><a href="#db-section">DB section</a></li>
 </ul>
 </li>
@@ -89,141 +82,78 @@ pre { font-family: monospace; margin-left: 36pt; }
  from a browser</p>
 </li>
 <li>
-<p>For non-Windows platform, put '#!/usr/bin/perl' or '#!env perl' as
- the first line</p>
-</li>
-<li>
-<p>of your script if you want to use the system Perl. For Windows using
- Strawberry Perl</p>
-</li>
-<li>
-<p>is recommended strongly, because installing modules is much easier -
- since it has its own compilers and make, and cpanm.bat works:</p>
-</li>
-<li>
-<p>#!C:/Strawberry/perl/bin/perl</p>
-</li>
+<p>For non-Windows platforms, put: ```sh '#!/usr/bin/perl' #or '#!env
+ perl'</p>
+<pre>as the first line of your script if you want to use the system Perl.
+* For Windows using Strawberry Perl is recommended strongly, because installing modules is much easier - since it has its own compilers and make, and cpanm.bat works:
+```sh
+   `#!C:/Strawberry/perl/bin/perl`
+</pre>
+<ul>
 <li>
 <p>assuming Strawberry is installed in the root directory of Windows.</p>
 </li>
 <li>
 <p>Please note, you can also use the following form , for
- multi-platforms, works on Cygwin, Windows and Linux (Mint):</p>
-</li>
-<li>
-<p>#!perl eval 'exec perl -wS $0 ${1+&quot;$@&quot;}' if
- $running_under_some_shell;</p>
-</li>
-<li>
-<p>Assumes there is at least one Perl excutable to be found in the
- PATH/path variable.</p>
-</li>
-</ul>
-<h2><a id="assumptions">Assumptions:</a></h2>
-<ul>
-<li>
-<p>You have perl installed</p>
-</li>
-<li>
-<p>The Wrapper::GetoptLong module installed, please see WGOL hint below.</p>
-</li>
-<li>
-<p>You have MySQL / MariaDB server and client installed, already.</p>
-</li>
-<li>
-<p>Everything is in the WGOLDemo folder/directory, and we are working
- from there.</p>
+ multi-platforms, works on Cygwin, Windows and Linux (Mint): ```sh
+ #!perl eval 'exec perl -wS $0 ${1+&quot;$@&quot;}' if $running_under_some_shell;</p>
+<pre>*  Assumes there is at least one Perl excutable to be found in the PATH/path variable.
+
+## Assumptions:
+* You have perl installed
+* The Wrapper::GetoptLong module installed, please see WGOL hint below.
+* You have MySQL / MariaDB server and client installed, already.
+* Everything is in the WGOLDemo folder/directory, and we are working from there.
+
+### WGOL hint:
+* Requires make utility
+* If you have cpanm installed, it is simple: 
+`cpanm Wrapper::GetoptLong`
+* Any errors will be in build.log ($HOME/.cpanm/work/(tmp-build-dir-name)/build.log
+* The beautiful thing about cpanm - it will take care of all the dependencies.
+  For example, Dist::Zilla has 39 dependencies - without cpanm, you have to download, build, test and install each one manually, first, finding where
+the link for each module is on CPAN.
+* To uninstall:
+```sh
+  `cpanm -U Wrapper::GetoptLong`
+</pre>
 </li>
 </ul>
-<h3><a id="wgol-hint">WGOL hint:</a></h3>
-<ul>
-<li>
-<p>Requires make utility</p>
 </li>
 <li>
-<p>If you have cpanm installed, it is simple: <code>
-cpanm Wrapper::GetoptLong</code></p>
-</li>
-<li>
-<p>Any errors will be in build.log
- ($HOME/.cpanm/work/(tmp-build-dir-name)/build.log</p>
-</li>
-<li>
-<p>The beautiful thing about cpanm - it will take care of all the
- dependencies.</p>
-</li>
-<li>
-<p>For example, Dist::Zilla has 39 dependencies - without cpanm, you
- have to download, build, test and install each one manually, first,
- finding where the link for each module is on CPAN.</p>
-</li>
-<li>
-<p>To uninstall:</p>
-</li>
-<li>
-<p><code>cpanm -U Wrapper::GetoptLong</code></p>
-</li>
-<li>
-<p>Otherwise, download the tar.gz file from CPAN</p>
-</li>
-<li>
-<p>`tar xzf Wrapper-GetoptLong-0.01.tar.gz</p>
-</li>
-<li>
-<p><code>cd Wrapper-GetoptLong-0.01</code></p>
-</li>
-<li>
-<p><code>perl Makefile.PL</code> - this will genearate a Makefile</p>
-</li>
-<li>
-<p>make &amp;&amp; make test &amp;&amp; make install</p>
-</li>
-</ul>
-<h2><a id="how-to-installrun">How to Install/run:</a></h2>
-<ul>
-<li>
-<p>Please, note : the SuperLottoDB.pm has the DB server name/IP, user
- and password hardcoded, you might have to change some of those:</p>
-</li>
-<li>
-<p>DB Server: 127.0.0.1 (or you can use localhost if not running on
- Windows - using Strawberry Perl).</p>
-</li>
-<li>
-<p>DB User: root</p>
-</li>
-<li>
-<p>DB Password: '' (or NULL/undef - not set)</p>
-</li>
-</ul>
-<h3><a id="install">Install</a></h3>
-<ul>
-<li>
-<p>By using the GitHub web link, from a browser,</p>
-</li>
-<li>
-<p><a href="https://github.com/ngabriel8/WGOLDemo">Link to GitHub</a></p>
-</li>
-<li>
-<p>Or the command line git utility - On the command line(in a terminal,
- or Command Prompt - on Windows)</p>
-</li>
-<li>
-<p>git clone <a href="https://github.com/ngabriel8/WGOLDemo.git">
-https://github.com/ngabriel8/WGOLDemo.git</a></p>
+<p>Otherwise, download the tar.gz file from CPAN ``<code>
+sh
+tar xzf Wrapper-GetoptLong-0.01.tar.gz
+cd Wrapper-GetoptLong-0.01</code>
+ perl Makefile.PL` # this will genearate a Makefile make &amp;&amp; make test &amp;&amp;
+ make install</p>
+<pre>
+## How to Install/run:
+* Please, note : the SuperLottoDB.pm has the DB server name/IP,  user and password hardcoded, you might have to change some of those:
+  *  DB Server: 127.0.0.1  (or you can use localhost if not running on Windows - using Strawberry Perl).
+  *  DB User:  root
+  *  DB Password: '' (or NULL/undef - not set)
+
+### Install 
+  *  By using the GitHub web link, from a browser,
+      [Link to GitHub](https://github.com/ngabriel8/WGOLDemo)
+  *  Or the command line git utility - On the command line(in a terminal, or Command Prompt - on Windows)
+```sh
+git clone &lt;https://github.com/ngabriel8/WGOLDemo.git&gt;
+</pre>
 </li>
 </ul>
 <h3><a id="db-section">DB section</a></h3>
-<pre>* cd SQL
-* gzip -d superlotto_db.sql.gz
-* mysql &lt; superlotto_db.sql
+<pre>cd SQL
+gzip -d superlotto_db.sql.gz
+mysql &lt; superlotto_db.sql
 
 # Or if you have db_user and password, set:
-* mysql -u db_user -p
-* # (will prompt for password)
-* # Once you're in the mysql prompt:
-* source suplerlotto_db.sql
-* quit
+mysql -u db_user -p
+# (will prompt for password)
+# Once you're in the mysql prompt:
+source suplerlotto_db.sql
+quit
 </pre>
 <h2><a id="running-the-driver-script">Running the driver (script)</a></h2>
 <ul>
@@ -231,22 +161,15 @@ https://github.com/ngabriel8/WGOLDemo.git</a></p>
 <p>The driver script is wgol_driver.pl</p>
 </li>
 <li>
-<p>If on Mac and *nix systems : make sure the exec bit is on :</p>
-</li>
-<li>
-<p>chmod 0755 wgol_drive.pl</p>
-</li>
-<li>
-<p>Or if you want to be mean, 0555 - just to be sure nobody messes with
- the code.</p>
-</li>
-<li>
-<p>The shbang line (#! - the first line) is set to /usr/bin/perl - You
- might have to change that to run it as : <code>./wgol_drive.pl</code></p>
-</li>
-<li>
-<p>Or (this should work on all systems) <code>perl  wgol_driver.pl</code>
-</p>
+<p>If on Mac and *nix systems : make sure the exec bit is on : ```sh
+ chmod 0755 wgol_drive.pl</p>
+<pre>* Or if you want to be mean, 0555 - just to be sure nobody messes with the code.
+*   The shbang line (#! - the first line) is set to /usr/bin/perl - You might have to change that to run it as :
+```sh
+./wgol_drive.pl
+# Or (this should work on all systems)
+perl  wgol_driver.pl
+</pre>
 </li>
 <li>
 <p>In either case, this will show the help message with available
@@ -268,13 +191,9 @@ print_usage_and_die</strong></p>
  option,</a></h4>
 <ul>
 <li>
-<p>The module will call the function (method) associated with the option</p>
-</li>
-<li>
-<p>from the config hash (associative array)</p>
-</li>
-<li>
-<p>defined in the driver script: wgol_driver.pl</p>
+<p>The module will call the function (method) associated with the option
+ from the config hash (associative array) defined in the driver script:
+ wgol_driver.pl</p>
 </li>
 </ul>
 </body>
