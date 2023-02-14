@@ -98,8 +98,7 @@ quit
 ```sh
 chmod 0755 wgol_drive.pl
 ```
-* Or if you want to be mean, 0555 - just to be sure nobody messes with the code.
-*   The shbang line (#! - the first line) is set to /usr/bin/perl - You might have to change that to run it as :
+*   The shbang line (#! - the first line) is set to /usr/bin/perl - You might have to change that to run it as:
 ```sh
 ./wgol_drive.pl
 # Or (this should work on all systems)
